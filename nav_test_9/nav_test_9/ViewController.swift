@@ -9,6 +9,36 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    
+    var users: [User] = [] {
+           didSet {
+               DispatchQueue.main.async {
+                   self.tableView.reloadData()
+               }
+           }
+       }
+    
+    override func viewDidLoad() {
+            super.viewDidLoad()
+
+            tableView.delegate = self
+            tableView.dataSource = self
+
+            fetchData()
+        }
+    
+    func fetchData() {
+          let networkLayer = UrlSessinNetworkLayer()
+          networkLayer.getUsers { result in
+              switch result {
+              case .success(let fetchedUsers):
+                  self.users = fetchedUsers
+              case .failure(let error):
+                  print("Error: \(error)")
+              }
+          }
+      }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         guard segue.identifier == "DetailsSegueId",
@@ -18,9 +48,9 @@ class ViewController: UIViewController {
                 return
         }
         
-        let selectedUserData = names[indexPath.row]
+        let selectedUserData = users[indexPath.row]
         detailViewController.name = selectedUserData.name
-        detailViewController.email = selectedUserData.email
+        detailViewController.username = selectedUserData.userName
     }
     
     @IBOutlet var tableView: UITableView!
@@ -28,45 +58,33 @@ class ViewController: UIViewController {
     
     struct userData  {
         let name: String;
-        let email: String
+        let userName: String
     }
-    
-    let names: [userData] = [
-        userData(name: "Denis", email: "example@gmail.com"),
-        userData(name: "Kate", email: "e2@gmail.com"),
-        userData(name: "Jhohn", email: "qwerty@gmail.com"),
-    ]
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-    }
-
-
 }
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("you taped me")
+    
     }
 }
 
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return names.count
+        return users.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let dataCell = names[indexPath.row]
+        let user = users[indexPath.row]
+
+                let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! CustomTableViewCell
+
+                cell.name.text = user.name
+                cell.username.text = user.userName
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! CustomTableViewCell
         
-        cell.name.text = dataCell.name
-        cell.email.text = dataCell.email
-        
-        return cell
+                print(cell)
+
+                return cell
     }
 }

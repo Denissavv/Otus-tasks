@@ -5,10 +5,10 @@ import UIKit
 class PostDetailsViewController: UIViewController {
     
     @IBOutlet private weak var nameLabel: UILabel!
-    @IBOutlet private weak var emailLabel: UILabel!
+    @IBOutlet private weak var userName: UILabel!
     
     var name: String?
-    var email: String?
+    var username: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,8 +17,8 @@ class PostDetailsViewController: UIViewController {
             nameLabel.text = "Name: \(name)"
         }
         
-        if let email = email {
-            emailLabel.text = "Email: \(email)"
+        if let username = userName {
+            userName.text = "UserName: \(username)"
         }
     }
 }

@@ -44,8 +44,8 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="email" destination="Df0-Rb-oDE" id="Wrq-pb-TsT"/>
                                             <outlet property="name" destination="QU3-7L-aiZ" id="0hD-QU-8sh"/>
+                                            <outlet property="username" destination="Df0-Rb-oDE" id="HM1-hS-vDb"/>
                                             <segue destination="oKD-04-mln" kind="show" identifier="DetailsSegueId" id="SeK-jE-xMV"/>
                                         </connections>
                                     </tableViewCell>
@@ -77,7 +77,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q2M-xQ-5fV">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q2M-xQ-5fV" userLabel="UserName Label">
                                 <rect key="frame" x="45" y="234" width="348" height="156"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -97,8 +97,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="A8y-ov-mOi"/>
                     <connections>
-                        <outlet property="NameLabel" destination="grq-yh-FfY" id="hPd-OT-2M2"/>
-                        <outlet property="emailLabel" destination="q2M-xQ-5fV" id="6EA-JK-W1i"/>
+                        <outlet property="nameLabel" destination="grq-yh-FfY" id="cgp-65-DbE"/>
+                        <outlet property="userName" destination="q2M-xQ-5fV" id="fC5-qx-CDT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I1J-sR-QtI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
